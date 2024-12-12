@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gish's Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            margin: 0;
+        }
+        .calculator {
+            background: #fff;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        .display {
+            width: 100%;
+            height: 50px;
+            background: #eaeaea;
+            border: none;
+            text-align: right;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 15px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background: #27798d;
+            color: white;
+            cursor: pointer;
+        }
+        button:active {
+            background: #0056b3;
+        }
+        .operator {
+            background: #1ac963;
+        }
+        .operator:active {
+            background: #1c7430;
+        }
+        .clear {
+            background: #dc3545;
+        }
+        .clear:active {
+            background: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly>
+        <div class="buttons">
+            <button onclick="appendValue('7')">SEVEN</button>
+            <button onclick="appendValue('8')">EIGHT</button>
+            <button onclick="appendValue('9')">NINE</button>
+            <button class="operator" onclick="appendValue('/')">/</button>
+            <button onclick="appendValue('4')">FOUR</button>
+            <button onclick="appendValue('5')">FIVE</button>
+            <button onclick="appendValue('6')">SIX</button>
+            <button class="operator" onclick="appendValue('*')">*</button>
+            <button onclick="appendValue('1')">ONE</button>
+            <button onclick="appendValue('2')">TWO</button>
+            <button onclick="appendValue('3')">THREE</button>
+            <button class="operator" onclick="appendValue('-')">-</button>
+            <button onclick="appendValue('0')">ZERO</button>
+            <button onclick="appendValue('.')">.</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="operator" onclick="appendValue('+')">+</button>
+            <button class="operator" onclick="calculateResult()" style="grid-column: span 4;">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+
+        function appendValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = '';
+        }
+
+        function calculateResult() {
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                alert('ITU GAK BISAAAA!');
+                clearDisplay();
+            }
+        }
+    </script>
+</body>
+</html>
